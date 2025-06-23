@@ -1,0 +1,28 @@
+<table border="1" cellpadding="10">
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Subject</th>
+        <th>Message</th>
+        <th>Date</th>
+        <th>Reply</th>
+    </tr>
+    {% for e in enquiries %}
+    <tr>
+        <td>{{ e[0] }}</td>
+        <td>{{ e[1] }}</td>
+        <td>{{ e[2] }}</td>
+        <td>{{ e[3] }}</td>
+        <td>{{ e[4] }}</td>
+        <td>{{ e[5] }}</td>
+        <td>
+            {% if e[6] %}
+                {{ e[6] }}
+            {% else %}
+                <a href="/admin/reply/{{ e[0] }}">Reply</a>
+            {% endif %}
+        </td>
+    </tr>
+    {% endfor %}
+</table>

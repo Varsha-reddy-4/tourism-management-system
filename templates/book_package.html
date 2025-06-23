@@ -1,0 +1,18 @@
+<!-- templates/book_package.html -->
+<!DOCTYPE html>
+<html>
+<head><title>Book Package
+</title>
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+<body>
+    <h2>Book This Package</h2>
+    <form method="post">
+        Your Name: <input type="text" name="name"><br>
+        Email: <input type="email" name="email"><br>
+        <input type="submit" value="Book">
+    </form>
+    <a href="/">Back</a>
+</body>
+</html>

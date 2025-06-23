@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Tourism Management System</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+</head>
+<body>
+<nav>
+    <ul>
+      <li><a href="/">Home</a></li>
+      <li><a href="/view-packages">Packages</a></li>
+      <li><a href="/login">Login</a></li>
+      <li><a href="/admin">Admin</a></li>
+      <li><a href="/enquiry">Enquiry</a></li>
+      {% if session.get('user_id') %}
+      <li><a href="/user-dashboard">User Dashboard</a></li>
+      {% endif %}
+    </ul>
+</nav>
+
+<div class="container">
+    <div class="hero">
+        <h1>Welcome to Paradise Tours</h1>
+        <p>Your journey begins here!</p>
+    </div>
+
+    <h1>Tourism Management System</h1>
+
+    <!-- Optional: You can keep or remove this image tag as you want -->
+    <img src="{{ url_for('static', filename='images/tournew.jpg') }}" alt="Tours background" class="inline-image" />
+
+    <div class="links">
+        <a href="/view-packages">🧳 View Packages</a><br />
+        <a href="/login">👤 User Login</a><br />
+        <a href="/admin">🔒 Admin Login</a><br />
+        <a href="/enquiry">📨 Contact / Enquiry</a><br />
+    </div>
+
+</div>
+
+<footer>
+    <hr />
+    <p>Enjoy your travels with us!</p>
+</footer>
+</body>
+</html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>View Bookings</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+<body>
+    <h1>All Bookings</h1>
+    {% for b in bookings %}
+        <p>
+            Booking ID: {{ b[0] }}<br>
+            Name: {{ b[1] }}<br>
+            Email: {{ b[2] }}<br>
+            Package: {{ b[3] }}
+        </p>
+        <hr>
+    {% endfor %}
+    <a href="/admin-dashboard">Back to Dashboard</a>
+</body>
+</html>

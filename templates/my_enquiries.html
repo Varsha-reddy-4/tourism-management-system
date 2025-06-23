@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Enquiries</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+<body>
+    <h2>My Enquiries & Replies</h2>
+    <table border="1" cellpadding="10">
+        <tr>
+            <th>Subject</th>
+            <th>Message</th>
+            <th>Reply</th>
+            <th>Date</th>
+        </tr>
+        {% for e in enquiries %}
+        <tr>
+            <td>{{ e[0] }}</td>
+            <td>{{ e[1] }}</td>
+            <td>{{ e[2] or "No reply yet" }}</td>
+            <td>{{ e[3] }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

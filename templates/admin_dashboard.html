@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="/admin-dashboard">Dashboard</a></li>
+            <li><a href="/add-package">Add Package</a></li>
+            <li><a href="/view-packages">View Packages</a></li>
+            <li><a href="/admin/enquiries">View Enquiries</a></li>
+            <li><a href="/view-bookings">View Bookings</a></li>
+            <li><a href="/logout">Logout</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <h1>Admin Dashboard</h1>
+
+        <div class="card">
+            <a href="/add-package">➕ Add New Package</a>
+        </div>
+        <div class="card">
+            <a href="/view-packages">🧳 View All Packages</a>
+        </div>
+        <div class="card">
+            <a href="/admin/enquiries">📬 View Enquiries</a>
+        </div>
+        <div class="card">
+            <a href="/view-bookings">📖 View Bookings</a>
+        </div>
+        <div class="card">
+            <a href="/logout">🚪 Logout</a>
+        </div>
+    </div>
+
+    <footer>
+        Admin Panel — Tourism Management System
+    </footer>
+</body>
+</html>
