@@ -2,7 +2,10 @@ from flask import Flask, render_template, request, redirect, session, url_for, f
 from werkzeug.security import generate_password_hash, check_password_hash
 from werkzeug.utils import secure_filename
 import mysql.connector
+from dotenv import load_dotenv
 import os
+load_dotenv() 
+password = os.getenv("DB_PASSWORD")  
 
 app = Flask(__name__)
 app.secret_key = 'Varsha@2005'
