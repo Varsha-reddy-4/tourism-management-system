@@ -8,7 +8,7 @@ load_dotenv()
 password = os.getenv("DB_PASSWORD")  
 
 app = Flask(__name__)
-app.secret_key = 'Varsha@2005'
+app.secret_key = 'secret key'
 
 UPLOAD_FOLDER = 'static/uploads'
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
@@ -18,7 +18,7 @@ def get_connection():
     return mysql.connector.connect(
         host='localhost',
         user='root',
-        password='Varsha@2005',
+        password=
         database='tourweb'
     )
 
