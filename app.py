@@ -16,11 +16,13 @@ os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 
 def get_connection():
     return mysql.connector.connect(
-        host='localhost',
-        user='root',
-        password='varsha@2005',
-        database='tourweb'
+        host=os.getenv('DB_HOST', 'localhost'),
+        user=os.getenv('DB_USER', 'root'),
+        password=os.getenv('DB_PASSWORD', ''),
+        database=os.getenv('DB_NAME', 'tourweb'),
+        port=int(os.getenv('DB_PORT', 3306))
     )
+
 
 @app.route('/')
 def home():
