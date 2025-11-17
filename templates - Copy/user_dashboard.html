@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>User Dashboard</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h2>Welcome, {{ name }}!</h2>
+    <h3>Available Tour Packages</h3>
+
+    <table border="1">
+        <tr>
+            <th>Image</th>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Price</th>
+            <th>Actions</th>
+        </tr>
+        {% for package in packages %}
+        <tr>
+            <td>
+                {% if package[4] %}
+                    <img src="{{ url_for('static', filename='uploads/' ~ package[4]) }}" width="100">
+                {% else %}
+                    No Image
+                {% endif %}
+            </td>
+            <td>{{ package[1] }}</td>
+            <td>{{ package[2] }}</td>
+            <td>₹{{ package[3] }}</td>
+            <td>
+                <a href="/book/{{ package[0] }}">Book</a> |
+                <a href="{{ url_for('package_details', package_id=package[0]) }}">View Details & Reviews</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <br>
+    <a href="/my-bookings">My Bookings</a> |
+    <a href="/my-enquiries">My Enquiries</a> |
+    <a href="/enquiry">New Enquiry</a> |
+    <a href="/logout">Logout</a>
+</body>
+</html>

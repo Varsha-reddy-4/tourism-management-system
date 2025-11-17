@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>View Packages</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h2>Available Tour Packages</h2>
+        <form method="POST" class="search-form">
+            <input type="text" name="name" placeholder="Search by name">
+            <input type="number" name="min_price" placeholder="Min Price">
+            <input type="number" name="max_price" placeholder="Max Price">
+            <button type="submit">Search</button>
+        </form>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Image</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Price</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for package in packages %}
+                <tr>
+                    <td>
+                        {% if package[4] %}
+                            <img src="{{ url_for('static', filename='uploads/' ~ package[4]) }}" width="100" alt="{{ package[1] }}">
+                        {% else %}
+                            <span class="no-image">No Image</span>
+                        {% endif %}
+                    </td>
+                    <td>{{ package[1] }}</td>
+                    <td>{{ package[2] }}</td>
+                    <td>₹{{ package[3] }}</td>
+                    <td>
+                        <a href="{{ url_for('delete_package', package_id=package[0]) }}" class="action-link delete">Delete</a>
+                        <a href="/book/{{ package[0] }}" class="action-link book">Book</a>
+                        <a href="{{ url_for('package_details', package_id=package[0]) }}" class="action-link details">View Details & Reviews</a>
+                    </td>
+                </tr>
+                {% else %}
+                <tr>
+                    <td colspan="5" style="text-align:center;">No packages found.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <br>
+        <a href="/add-package" class="button">Add New Package</a> | <a href="/" class="button">Home</a>
+    </div>
+</body>
+</html>

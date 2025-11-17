@@ -1,0 +1,89 @@
+<!-- <!DOCTYPE html>
+<html>
+<head>
+    <title>{{ package[1] }} - Details</title>
+</head>
+<body>
+    <h2>{{ package[1] }}</h2>
+    <p><strong>Description:</strong> {{ package[2] }}</p>
+    <p><strong>Price:</strong> ₹{{ package[3] }}</p>
+
+    <hr>
+    <h3>Leave a Review</h3>
+    {% if session.get('user_id') %}
+    <form method="POST">
+        <label>Rating (1 to 5):</label>
+        <input type="number" name="rating" min="1" max="5" required><br><br>
+        <label>Comment:</label><br>
+        <textarea name="comment" rows="4" cols="40" required></textarea><br><br>
+        <button type="submit">Submit Review</button>
+    </form>
+    {% else %}
+    <p><a href="/login">Login</a> to leave a review.</p>
+    {% endif %}
+
+    <hr>
+    <h3>User Reviews</h3>
+    {% for review in reviews %}
+        <p><strong>{{ review[0] }}</strong> rated it {{ review[1] }}/5</p>
+        <p>{{ review[2] }}</p>
+        <p><em>{{ review[3] }}</em></p>
+        <hr>
+    {% else %}
+        <p>No reviews yet.</p>
+    {% endfor %}
+</body>
+</html> -->
+
+<!-- templates/package_details.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ package[1] }} - Details & Reviews</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h2>{{ package[1] }}</h2>
+    <p>{{ package[2] }}</p>
+    <p>Price: ₹{{ package[3] }}</p>
+    {% if package[4] %}
+        <img src="{{ url_for('static', filename='uploads/' ~ package[4]) }}" width="300" alt="{{ package[1] }}">
+    {% endif %}
+
+    <hr>
+
+    <h3>Reviews</h3>
+    {% if reviews %}
+        <ul>
+        {% for review in reviews %}
+            <li>
+                <strong>{{ review[0] }}</strong> rated <strong>{{ review[1] }}/5</strong><br>
+                "{{ review[2] }}"<br>
+                <small>on {{ review[3].strftime('%Y-%m-%d') if review[3] else '' }}</small>
+            </li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>No reviews yet. Be the first to review!</p>
+    {% endif %}
+
+    <hr>
+
+    {% if session.get('user_id') %}
+        <h3>Submit a Review</h3>
+        <form method="POST" action="{{ url_for('package_details', package_id=package[0]) }}">
+            <label for="rating">Rating (1-5):</label><br>
+            <input type="number" name="rating" id="rating" min="1" max="5" required><br><br>
+
+            <label for="comment">Comment:</label><br>
+            <textarea name="comment" id="comment" rows="4" required></textarea><br><br>
+
+            <button type="submit">Submit Review</button>
+        </form>
+    {% else %}
+        <p><a href="{{ url_for('login') }}">Log in</a> to submit a review.</p>
+    {% endif %}
+
+    <br><a href="{{ url_for('view_packages') }}">Back to Packages</a>
+</body>
+</html>
